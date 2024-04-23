@@ -1,20 +1,23 @@
 CC=g++
 CFLAGS=-c -Wall -std=c++11 
 LDFLAGS=
-INLCUDES=-I Resources/include
-LIBFLAGS=-LResources/lib -lsfml-graphics -lsfml-window -lsfml-system
+INLCUDES=
+LIBFLAGS=-lsfml-graphics -lsfml-window -lsfml-system
 SOURCES=./Src/Graphics_designer.cpp ./Src/Main.cpp 
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=main
 BINDIR=/usr/bin
 
-all: $(SOURCES) $(EXECUTABLE)
+all: compile doit run
         
-$(EXECUTABLE): $(OBJECTS)
-	$(CC) $(LDFLAGS) $(OBJECTS) -o $@ $(LIBFLAGS)
+compile:$(SOURCES)
+	$(CC) $(CFLAGS) $(SOURCES)
 
-.cpp.o:
-	$(CC) $(CFLAGS) $(INLCUDES) $< -o $@ $(LIBFLAGS)
+doit:
+	$(CC) Main.o Graphics_designer.o -o $(EXECUTABLE) $(LIBFLAGS)
+
+run:
+	./main
 
 clean:
 	rm *.o $(EXECUTABLE)
@@ -24,3 +27,5 @@ install:
 	sudo cp -u $(EXECUTABLE) $(BINDIR)
 uninstall:
 	sudo rm $(BINDIR)/$(EXECUTABLE)
+
+
