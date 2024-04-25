@@ -10,7 +10,7 @@ reset();
 }
 
 
-void Square_Main:reset(){
+void Square_Main::reset(){
 
 dead = false;
 speed = 1;
