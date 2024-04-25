@@ -13,6 +13,7 @@ void Graphics_designer::Create_BG() {
 void Graphics_designer::run() {
     Create_BG();
 
+
     while (window.isOpen()) {
         while (window.pollEvent(event)) {
             // "close requested" event: we close the window
