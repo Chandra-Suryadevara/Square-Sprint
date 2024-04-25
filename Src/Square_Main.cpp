@@ -1,5 +1,5 @@
-#include "Square_Main.hpp"
-#include "Global.hpp"
+#include "../Headers/Square_Main.hpp"
+#include "../Headers/Global.hpp"
 #include <SFML/Graphics.hpp>
 
 Square_Main::Square_Main(){
