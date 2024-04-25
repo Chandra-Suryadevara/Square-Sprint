@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "Global.hpp"
 
-class Square{
+class Square_Main{
     private:
         int speed;
         bool dead;
@@ -14,10 +14,10 @@ class Square{
 
 
     public:
-        Sqaure();
+        Sqaure_Main();
         void reset();
         bool is_dead();
-        ~Sqaure();
+        ~Sqaure_Main();
         void draw(sf::RenderWindow& i_window);
 
         

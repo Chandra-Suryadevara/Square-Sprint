@@ -1,8 +1,8 @@
-#include "Square.hpp"
+#include "Square_Main.hpp"
 #include "Global.hpp"
+#include <SFML/Graphics.hpp>
 
-
-Square::Square(){
+Square_Main::Square_Main(){
 
 reset();
 
@@ -10,16 +10,17 @@ reset();
 }
 
 
-void Square:reset(){
+void Square_Main:reset(){
 
 dead = false;
 speed = 1;
 score=0;
-
+x = Square_start;
+y=136;
 
 }
 
-void Square::draw(sf::RenderWindow& i_window)
+void Square_Main::draw(sf::RenderWindow& i_window)
 {
 	sf::Sprite sprite;
 
@@ -33,6 +34,6 @@ void Square::draw(sf::RenderWindow& i_window)
 	i_window.draw(sprite);
 }
 
-bool Square::is_dead(){
+bool Square_Main::is_dead(){
     return dead;
 }
