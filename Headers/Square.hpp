@@ -3,17 +3,14 @@
 #include <SFML/Graphics.hpp>
 #include "Global.hpp"
 
-class Square_Main{
-    private:
+class Square_Main {
+private:
         int speed;
         bool dead;
         int score;
         const int y;
         float x;
-
-
-
-    public:
+public:
         Sqaure_Main();
         void reset();
         bool is_dead();
