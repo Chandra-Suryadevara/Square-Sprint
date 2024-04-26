@@ -4,6 +4,7 @@
 #include <random>
 #include "../Headers/Graphics_designer.hpp"
 #include "../Headers/Square_Main.hpp"
+
 #include <SFML/Graphics.hpp>
 
 int main() {

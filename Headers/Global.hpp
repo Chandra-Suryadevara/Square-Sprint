@@ -8,3 +8,4 @@ constexpr unsigned char SCREEN_RESIZE = 2;
 
 const int Square_size = 256;
 constexpr unsigned char Square_start = 37;
+const float initial_location_spike = 4090;

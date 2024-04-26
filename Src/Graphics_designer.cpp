@@ -1,6 +1,7 @@
 #include "../Headers/Graphics_designer.hpp"
 #include "../Headers/Global.hpp"
 #include "../Headers/Square_Main.hpp"
+#include "../Headers/Spikes.hpp"
 #include <iostream>
 
 Graphics_designer::Graphics_designer() : window(sf::VideoMode(SCREEN_WIDTH,SCREEN_HEIGHT), "Geometry Dash") {
@@ -13,18 +14,31 @@ void Graphics_designer::Create_BG() {
 
 void Graphics_designer::run() {
     Create_BG();
-    Square_Main main_char;  
-
+    Square_Main main_char;
+    Spikes Tri1;
+    bool jump = false;
     while (window.isOpen()) {
         while (window.pollEvent(event)) {
             // "close requested" event: we close the window
             if (event.type == sf::Event::Closed)
                 window.close();
+            if (event.type == sf::Event::KeyPressed) {
+             if (event.key.code == sf::Keyboard::Space) {
+                jump = true;
+             }
+        }
+        
+        }
+        if (main_char.get_sprite().getGlobalBounds().intersects(Tri1.get_sprite().getGlobalBounds())) {
+            // Collision occurred, end the game
+            window.close();
         }
         sf::Sprite background_sprite(background_texture);
         DrawBG(background_sprite);
-        main_char.draw(window);
-        
+        Tri1.draw(window);
+        main_char.draw(window,jump);
+        jump = false;
+    
         window.display();
     }
 }
