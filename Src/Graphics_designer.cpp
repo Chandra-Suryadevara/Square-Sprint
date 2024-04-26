@@ -1,8 +1,9 @@
 #include "../Headers/Graphics_designer.hpp"
 #include "../Headers/Global.hpp"
+#include "../Headers/Square_Main.hpp"
 #include <iostream>
 
-Graphics_designer::Graphics_designer() : window(sf::VideoMode(4048,2048), "Geometry Dash") {
+Graphics_designer::Graphics_designer() : window(sf::VideoMode(SCREEN_WIDTH,SCREEN_HEIGHT), "Geometry Dash") {
     window.setView(sf::View(sf::FloatRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)));
 }
 
@@ -12,7 +13,7 @@ void Graphics_designer::Create_BG() {
 
 void Graphics_designer::run() {
     Create_BG();
-
+    Square_Main main_char;  
 
     while (window.isOpen()) {
         while (window.pollEvent(event)) {
@@ -22,6 +23,8 @@ void Graphics_designer::run() {
         }
         sf::Sprite background_sprite(background_texture);
         DrawBG(background_sprite);
+        main_char.draw(window);
+        
         window.display();
     }
 }

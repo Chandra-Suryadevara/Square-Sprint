@@ -12,28 +12,48 @@ reset();
 
 void Square_Main::reset(){
 
-dead = false;
-speed = 1;
+dead = true;
+speed = 2;
 score=0;
 x = Square_start;
-y=136;
 
 }
+
 
 void Square_Main::draw(sf::RenderWindow& i_window)
 {
-	sf::Sprite sprite;
+    sf::Sprite sprite;
+    sf::Texture texture;
+    if (dead){
+        texture.loadFromFile("Resources/Images/End_Face.png");
+    } else {
+        texture.loadFromFile("Resources/Images/Normal_face.png");
+    }
 
-	sf::Texture texture;
-	texture.loadFromFile("Resources/Images/Normal_face.png");
+    sprite.setPosition(x, y);
+    sprite.setTexture(texture);
 
-	sprite.setPosition(x, round(y));
-	sprite.setTexture(texture);
-	sprite.setTextureRect(sf::IntRect(Square_size * (0 >= speed), Square_size * dead, Square_size, Square_size));
+    // Define the texture rectangle based on the state of the object
+    sf::IntRect textureRect;
+    if (dead) {
+        textureRect = sf::IntRect(0, 0, Square_size, Square_size);
+    } else {
+        textureRect = sf::IntRect(0, 0, Square_size, Square_size);
+    }
+    sprite.setTextureRect(textureRect);
 
-	i_window.draw(sprite);
+    i_window.draw(sprite);
 }
+
+
+
 
 bool Square_Main::is_dead(){
     return dead;
+}
+
+
+
+Square_Main::~Square_Main(){
+
 }

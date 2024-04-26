@@ -20,7 +20,7 @@ run:
 	./main
 
 clean:
-	rm *.o $(EXECUTABLE)
+	rm *.o
 
 install:
 	#install -s $(EXECUTABLE) $(BINDIR)

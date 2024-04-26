@@ -8,10 +8,10 @@
 
 int main() {
     Graphics_designer Model;
-    Square_Main main_char;
+    
     
     Model.run();
-    main_char.draw(Model.get_window());
+    
 
     return 0;
 }
