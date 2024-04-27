@@ -23,7 +23,7 @@ x = Square_start;
 void Square_Main::intial_movement(float temp_speed){
 
     
-    if (x > 800){
+    if (x > 400){
        
     }else{
         x = x + temp_speed;
@@ -33,30 +33,29 @@ void Square_Main::intial_movement(float temp_speed){
 
 void Square_Main::load_image(){
 if (dead){
-        texture.loadFromFile("Resources/Images/End_Face.png");
+        texture.loadFromFile("Resources/Images/end_face.png");
     } else {
-        texture.loadFromFile("Resources/Images/Normal_face.png");
+        texture.loadFromFile("Resources/Images/main_face.png");
     }
 
 }
 
-void Square_Main::jump(){
+void Square_Main::jump(float speed){
 if (reach == false){
 
-if (y > 900){
-    y = y-2.2;
-}else if (y <= 900){
+if (y > 400){
+    y = y-speed;
+}else if (y <= 400){
     reach = true;
 }
 } else{
     if (y!=intial_y){
         
-        y = y+2.2;
-        if (y > 1620){
-            y = 1620;
+        y = y+speed;
+        if (y > 755){
+            y = 755;
         }
     }else{
-        std::cout<<"here";
         is_jumping = false;
         reach = false;
     }
@@ -67,7 +66,7 @@ void Square_Main::draw(sf::RenderWindow& i_window,bool pressed)
 {
     sf::Sprite sprite;
     load_image();
-    intial_movement(2);
+    intial_movement(1);
     sprite.setPosition(x, y);
     sprite.setTexture(texture);
 
@@ -84,7 +83,7 @@ void Square_Main::draw(sf::RenderWindow& i_window,bool pressed)
     }
 
     if(is_jumping){
-        jump();
+        jump(0.6);
     }
 
     i_window.draw(sprite);

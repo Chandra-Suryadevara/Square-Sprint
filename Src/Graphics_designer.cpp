@@ -2,6 +2,7 @@
 #include "../Headers/Global.hpp"
 #include "../Headers/Square_Main.hpp"
 #include "../Headers/Spikes.hpp"
+#include "../Headers/Audio_game.hpp"
 #include <iostream>
 
 Graphics_designer::Graphics_designer() : window(sf::VideoMode(SCREEN_WIDTH,SCREEN_HEIGHT), "Geometry Dash") {
@@ -14,12 +15,13 @@ void Graphics_designer::Create_BG() {
 
 void Graphics_designer::run() {
     Create_BG();
+    Audio_game game_audio;
     Square_Main main_char;
     Spikes Tri1;
     bool jump = false;
+
     while (window.isOpen()) {
         while (window.pollEvent(event)) {
-            // "close requested" event: we close the window
             if (event.type == sf::Event::Closed)
                 window.close();
             if (event.type == sf::Event::KeyPressed) {
@@ -27,18 +29,32 @@ void Graphics_designer::run() {
                 jump = true;
              }
         }
+        if (event.type == sf::Event::MouseButtonPressed) {
+            
+                if (event.mouseButton.button == sf::Mouse::Left) {
+                    
+                    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+
+                    std::cout << "Sprite Position: (" << mousePos.x << ", " << mousePos.y << ")" << std::endl;
+
+                    if (game_audio.get_sprite().getGlobalBounds().contains(mousePos.x,mousePos.y)) {
+                        
+                        game_audio.change_audio();
+
+                    }}
+        }
         
         }
         if (main_char.get_sprite().getGlobalBounds().intersects(Tri1.get_sprite().getGlobalBounds())) {
-            // Collision occurred, end the game
+            
             window.close();
         }
         sf::Sprite background_sprite(background_texture);
         DrawBG(background_sprite);
         Tri1.draw(window);
         main_char.draw(window,jump);
+        game_audio.draw(window);
         jump = false;
-    
         window.display();
     }
 }

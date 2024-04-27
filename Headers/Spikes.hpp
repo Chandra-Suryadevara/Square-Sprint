@@ -6,7 +6,7 @@
 
 class Spikes {
 private:
-    const int y = 1685;
+    const int y = 740;
     float x;
     sf::Sprite sprite;
     sf::Texture texture;

@@ -27,9 +27,9 @@ void Spikes::movement(float speed){
 void Spikes::draw(sf::RenderWindow& window){
     sprite.setTexture(texture);
     sprite.setPosition(x, y); 
-    sprite.setTextureRect(sf::IntRect(0, 0, 300, 300));
+    sprite.setTextureRect(sf::IntRect(0, 0, 100, 100));
     if (x!=-200){
-        movement(2);
+        movement(0.5);
     }
     window.draw(sprite);
 }
