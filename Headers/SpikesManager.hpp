@@ -11,9 +11,10 @@ class SpikesManager{
         std::vector<Spikes> Obuj_spikes;
         float speed;
         sf::Vector2i lastelementpostion;
+        int score;
     public:
         SpikesManager();
-        void draw(sf::RenderWindow& Window);
+        int draw(sf::RenderWindow& Window);
         int generaterandomnum(int limit1, int limit2);
         void createOBJS();
         std::vector<Spikes>& get_spikes(); 

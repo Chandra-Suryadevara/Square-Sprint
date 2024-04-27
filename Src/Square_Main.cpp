@@ -40,6 +40,10 @@ if (dead){
 
 }
 
+void Square_Main::set_score(int scoremain){
+    score = scoremain;
+}
+
 void Square_Main::jump(float speed){
 if (reach == false){
 

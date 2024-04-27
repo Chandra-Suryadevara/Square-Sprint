@@ -23,6 +23,7 @@ public:
     void jump(float speed);
     void intial_movement(float temp_speed);
     sf::Sprite& get_sprite();
+    void set_score(int scoremain);
     ~Square_Main(); // Corrected destructor name
     void draw(sf::RenderWindow& i_window,bool pressed);
     void draw_dead(sf::RenderWindow& window);

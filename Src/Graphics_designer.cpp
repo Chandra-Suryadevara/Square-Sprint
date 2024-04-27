@@ -28,6 +28,8 @@ void Graphics_designer::run() {
             if (event.type == sf::Event::KeyPressed) {
              if (event.key.code == sf::Keyboard::Space) {
                 jump = true;
+             }else if (event.key.code == sf::Keyboard::M) {
+                game_audio.change_audio();
              }
         }
         if (event.type == sf::Event::MouseButtonPressed) {
@@ -35,8 +37,6 @@ void Graphics_designer::run() {
                 if (event.mouseButton.button == sf::Mouse::Left) {
                     
                     sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-
-                    std::cout << "Sprite Position: (" << mousePos.x << ", " << mousePos.y << ")" << std::endl;
 
                     if (game_audio.get_sprite().getGlobalBounds().contains(mousePos.x,mousePos.y)) {
                         
@@ -57,7 +57,7 @@ void Graphics_designer::run() {
         DrawBG(background_sprite);
         main_char.draw(window,jump);
         game_audio.draw(window);
-        Manager.draw(window);
+        main_char.set_score(Manager.draw(window));
         jump = false;
         window.display();
     }
