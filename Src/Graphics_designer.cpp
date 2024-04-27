@@ -3,6 +3,7 @@
 #include "../Headers/Square_Main.hpp"
 #include "../Headers/Spikes.hpp"
 #include "../Headers/Audio_game.hpp"
+#include "../Headers/SpikesManager.hpp"
 #include <iostream>
 
 Graphics_designer::Graphics_designer() : window(sf::VideoMode(SCREEN_WIDTH,SCREEN_HEIGHT), "Geometry Dash") {
@@ -17,7 +18,7 @@ void Graphics_designer::run() {
     Create_BG();
     Audio_game game_audio;
     Square_Main main_char;
-    Spikes Tri1;
+    SpikesManager Manager;
     bool jump = false;
 
     while (window.isOpen()) {
@@ -45,15 +46,18 @@ void Graphics_designer::run() {
         }
         
         }
-        if (main_char.get_sprite().getGlobalBounds().intersects(Tri1.get_sprite().getGlobalBounds())) {
+        std::vector<Spikes> sprite_vector = Manager.get_spikes();
+        for (int i=0;i<sprite_vector.size();i++){
+            if (main_char.get_sprite().getGlobalBounds().intersects(sprite_vector[i].get_sprite().getGlobalBounds())) {
             
             window.close();
+            }
         }
         sf::Sprite background_sprite(background_texture);
         DrawBG(background_sprite);
-        Tri1.draw(window);
         main_char.draw(window,jump);
         game_audio.draw(window);
+        Manager.draw(window);
         jump = false;
         window.display();
     }

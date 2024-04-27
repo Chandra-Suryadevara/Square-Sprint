@@ -43,9 +43,9 @@ if (dead){
 void Square_Main::jump(float speed){
 if (reach == false){
 
-if (y > 400){
+if (y > 300){
     y = y-speed;
-}else if (y <= 400){
+}else if (y <= 300){
     reach = true;
 }
 } else{

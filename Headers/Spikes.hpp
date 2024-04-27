@@ -6,7 +6,7 @@
 
 class Spikes {
 private:
-    const int y = 740;
+    int y = 740;
     float x;
     sf::Sprite sprite;
     sf::Texture texture;
@@ -16,7 +16,7 @@ public:
     void load_image();
     void set_location(float user_x);
     sf::Sprite& get_sprite();
-    void draw(sf::RenderWindow& window);
+    std::string draw(sf::RenderWindow& window);
     void movement(float speed);
     
     
