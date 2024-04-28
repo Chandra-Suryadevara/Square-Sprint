@@ -1,5 +1,6 @@
 #include "../Headers/SpikesManager.hpp"
 #include "../Headers/Spikes.hpp"
+#include "../Headers/HighScoreManager.hpp"
 #include <SFML/Graphics.hpp>
 #include <random>
 #include <iostream>
@@ -7,6 +8,7 @@
 SpikesManager::SpikesManager(){
 
 score =0;
+speed =0.5;
 }
 
 int SpikesManager::generaterandomnum(int limit1, int limit2){
@@ -40,12 +42,30 @@ for (int i=0;i<generaterandomnum(1,3);i++){
 }
 
 void SpikesManager::restart(){
+    HighScoreManager H;
+    H.saveHighScore(score);
+
+
     Obuj_spikes.clear();
+
+score =0;
+speed =0.6;
 
 }
 
 int SpikesManager::draw(sf::RenderWindow& window, bool& lock){
+    
+    if (score !=0){
+    if (score%10==0&&count ==0){
 
+        
+        speed = speed + 0.1;
+
+        count++;
+    }else if(score%8==0 && score%10!=0 && count !=0){
+        count =0;
+    }
+    }
     if (Obuj_spikes.size()!=0){
      lastelementpostion = sf::Vector2i(Obuj_spikes.back().get_sprite().getPosition());
     }
@@ -58,7 +78,7 @@ int SpikesManager::draw(sf::RenderWindow& window, bool& lock){
         }else{
             Obuj_spikes[i].resume_movement();
         }
-        std::string result = Obuj_spikes[i].draw(window);
+        std::string result = Obuj_spikes[i].draw(window,speed);
         if (result == "done"){
             Obuj_spikes.erase(Obuj_spikes.begin()+i);
             score++;

@@ -17,7 +17,7 @@ public:
     void load_image();
     void set_location(float user_x);
     sf::Sprite& get_sprite();
-    std::string draw(sf::RenderWindow& window);
+    std::string draw(sf::RenderWindow& window,float speed);
     void movement(float speed);
     void stop_movement();
     void resume_movement();

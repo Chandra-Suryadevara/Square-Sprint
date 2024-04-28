@@ -1,5 +1,6 @@
 #include "../Headers/Square_Main.hpp"
 #include "../Headers/Global.hpp"
+#include "../Headers/Text_handler.hpp"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
@@ -10,22 +11,32 @@ reset();
 
 }
 
+void Square_Main::set_dead(bool x){
+    dead = x;
+}
 
 void Square_Main::reset(){
 
 dead = false;
 score=0;
+jump_value=0.7;
 y=intial_y;
 x = Square_start;
+
+
+    highscore = H.getHighScore();
+    if(highscore==-1){
+        highscore=0;
+    }
 
 }
 
 void Square_Main::intial_movement(float temp_speed){
 
-    
     if (x > 400){
        
     }else{
+        
         x = x + temp_speed;
     }
 
@@ -68,6 +79,7 @@ if (y > 300){
 }
 void Square_Main::draw(sf::RenderWindow& i_window,bool pressed)
 {
+
     sf::Sprite sprite;
     load_image();
     intial_movement(1);
@@ -85,14 +97,30 @@ void Square_Main::draw(sf::RenderWindow& i_window,bool pressed)
     if (pressed == true && is_jumping == false){
         is_jumping =true;
     }
-
-    if(is_jumping){
-        jump(0.6);
+    if (score !=0){
+    if (score%10==0&& count ==0){
+        jump_value = jump_value + 0.1;
+        count++;
+    }else if(score%8==0 && score%10!=0 && count !=0){
+        count =0;
     }
+    }
+    if(is_jumping){
+        jump(jump_value);
+    }
+    Scoretext.set_string("Score: ");
 
+    Highscore.set_string("High Score: ");
+    Scorenum.set_string(std::to_string(score));
+    Highscorenum.set_string(std::to_string(highscore));
+    Highscore.draw(i_window,1480,0);
+    Highscorenum.draw(i_window,1750,0);
+    Scoretext.draw(i_window,10,0);
+    Scorenum.draw(i_window,150,0);
     i_window.draw(sprite);
     sprite_local = sprite;
 }
+
 
 sf::Sprite& Square_Main::get_sprite(){
     return sprite_local;

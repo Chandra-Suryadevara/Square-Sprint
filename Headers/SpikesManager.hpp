@@ -12,6 +12,7 @@ class SpikesManager{
         float speed;
         sf::Vector2i lastelementpostion;
         int score;
+        int count =0;
     public:
         SpikesManager();
         int draw(sf::RenderWindow& Window, bool& lock);

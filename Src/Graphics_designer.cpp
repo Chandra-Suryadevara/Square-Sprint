@@ -24,6 +24,7 @@ void Graphics_designer::run() {
     bool menuopen= false;
     bool jump = false;
     std::string chossen;
+    bool dead= false;
     std::vector<Text_handler> textobjs=Bar.get_objs();
     while (window.isOpen()) {
         while (window.pollEvent(event)) {
@@ -48,20 +49,18 @@ void Graphics_designer::run() {
                     
                     sf::Vector2i mousePos = sf::Mouse::getPosition(window);
                     
-                    if(menuopen){
+                    if(menuopen || dead){
                         //check this fucntioon not working as intended 
+
+                    textobjs=Bar.get_objs();
                     for (int i=0;i<textobjs.size();i++){
+
                         if (textobjs[i].get_text().getGlobalBounds().contains(mousePos.x,mousePos.y)) {
                             
                             chossen= textobjs[i].get_set_text();
 
                         }}
                     }
-        
-            
-
-    
-
                     if (game_audio.get_sprite().getGlobalBounds().contains(mousePos.x,mousePos.y)) {
                         
                         game_audio.change_audio();
@@ -77,34 +76,44 @@ void Graphics_designer::run() {
         for (int i=0;i<sprite_vector.size();i++){
             if (main_char.get_sprite().getGlobalBounds().intersects(sprite_vector[i].get_sprite().getGlobalBounds())) {
             
-            window.close();
+            dead = true;
+            main_char.set_dead(dead);
             }
         }
         
         sf::Sprite background_sprite(background_texture);
         DrawBG(background_sprite);
-       
         main_char.draw(window,jump);
         game_audio.draw(window);
-        if (menuopen){
-            Bar.draw(window,event);
+        if (menuopen||dead){
+            menuopen=true;
+            Bar.draw(window,event,dead);
         }
         if (chossen !="NULL"){
             if (chossen=="Resume"){
-                menuopen = !menuopen;
+                menuopen = false;   
 
             }else if (chossen == "Restart"){
+                
                 main_char.reset();
                 Manager.restart();
+                menuopen = false;
+                dead =false;
+            }else if(chossen=="Mute" ){
+                game_audio.mute_music();
+            
+            }else if(chossen=="Unmute" ){
+                game_audio.unmute();
+            
+            }else if (chossen=="Exit"){
+                window.close();
             }
-
-
         }
 
         main_char.set_score(Manager.draw(window,menuopen));
         window.display();
         jump = false;
-        chossen=="NULL";
+        chossen="NULL";
     
     }
 }

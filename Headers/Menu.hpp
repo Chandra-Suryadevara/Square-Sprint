@@ -13,16 +13,18 @@ private:
     std::vector<Text_handler> textobjs;
     sf:: Sprite sprite;
     bool is_done =false;
+    bool end_game= false;
     float x;
     float y;
 
 
 public:
     Menu();
-    void draw(sf::RenderWindow& window, sf::Event& event);
+    void draw(sf::RenderWindow& window, sf::Event& event,bool x);
     void load_main();
     void Create_text_objs();
     std::vector<Text_handler> get_objs();
+
     void preprocess();
 
 

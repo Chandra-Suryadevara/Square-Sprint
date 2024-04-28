@@ -35,7 +35,7 @@ void Spikes::stop_movement(){
     movementlock= false;
 }
 
-std::string Spikes::draw(sf::RenderWindow& window){
+std::string Spikes::draw(sf::RenderWindow& window, float speed){
     sprite.setTexture(texture);
     sprite.setPosition(x, y); 
     sprite.setTextureRect(sf::IntRect(0, 0, 100, 100));
@@ -43,7 +43,7 @@ std::string Spikes::draw(sf::RenderWindow& window){
 
     if (x>-100){
         
-        movement(0.5);
+        movement(speed);
         
     }else{
         return "done";

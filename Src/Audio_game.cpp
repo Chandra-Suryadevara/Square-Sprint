@@ -56,6 +56,18 @@ void Audio_game::change_audio(){
 
 }
 
+void Audio_game::mute_music(){
+
+    Game_music.setVolume(0);
+    mute = true;
+}
+
+void Audio_game::unmute(){
+    Game_music.setVolume(50);
+        mute = false;
+
+}
+
 
 
 sf::Sprite& Audio_game::get_sprite(){

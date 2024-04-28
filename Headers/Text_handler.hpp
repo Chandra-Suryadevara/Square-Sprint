@@ -18,7 +18,7 @@ class Text_handler{
         void set_color();
         void set_string(std::string textwanted);
         void set_size(int size);
-        void draw(sf::RenderWindow& window,float x,float y );
+        void draw(sf::RenderWindow& window,float x,float y ,int size = 54);
         sf::Text& get_text();
         std::string get_set_text();
 

@@ -16,6 +16,11 @@ y=100;
 
 
 void Menu::Create_text_objs(){
+if (!end_game){
+    options = {"Resume","Restart", "Unmute", "Mute","Exit"};
+}else{
+    options = {"Restart", "Unmute", "Mute","Exit"};
+}
 if (textobjs.size() == 0){
 for (int i=0;i<options.size();i++){
     if (i ==0){
@@ -61,17 +66,39 @@ void Menu::preprocess(){
     
 }
 
-void Menu::draw(sf::RenderWindow& window, sf::Event& event) {
+void Menu::draw(sf::RenderWindow& window, sf::Event& event,bool lost1) {
+    if (lost1 == true){
+        end_game=true;
+    Text_handler lost;
+    lost.set_string("YOU LOST");
+    lost.draw(window,400,-50,300);
+     load_main();
+    sprite.setTexture(texture);
 
-    if (!is_done){
+    sprite.setPosition(x, 250);
+
+    sf::IntRect textureRect(0, 0, 600, 600);
+    sprite.setTextureRect(textureRect);
+    Create_text_objs();
+    
+    
+    }
+    
+    if (!is_done && lost1 == false){
         preprocess();
         is_done =true;
         
     }
     
     window.draw(sprite);
+    if (!lost1){
     for (int i=0;i<textobjs.size();i++){
         textobjs[i].draw(window,750,200+75*i);
+    }
+    }else{
+        for (int i=0;i<textobjs.size();i++){
+        textobjs[i].draw(window,750,400+75*i);
+    }
     }
 
    }

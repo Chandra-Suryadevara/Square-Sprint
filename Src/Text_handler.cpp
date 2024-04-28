@@ -29,10 +29,10 @@ set_text=textwanted;
 text.setString(textwanted);
 }
 
-void Text_handler::draw(sf::RenderWindow& window,float x,float y ){
+void Text_handler::draw(sf::RenderWindow& window,float x,float y ,int size){
 
 load_font();
-set_size(54);
+set_size(size);
 text.setPosition(x, y);
 set_color();
 window.draw(text);

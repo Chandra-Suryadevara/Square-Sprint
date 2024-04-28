@@ -15,6 +15,9 @@ class Audio_game {
         bool mute =false;
     public:
         Audio_game();
+
+        void unmute();
+        void mute_music();
         void load_icons();
         void load_song();
         void draw(sf::RenderWindow& window);
