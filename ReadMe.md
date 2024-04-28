@@ -11,9 +11,8 @@ Square Sprint is a fast-paced 2D platformer game inspired by Geometry Dash. Jump
 1. Clone the repository to your local machine:
 
 
+![github](https://github.com/Chandra-Suryadevara/Square-Sprint/assets/128857515/c3aedacd-346e-4c5d-8b6d-13d97de9bd50)
 
-
-    ![image]({https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white})
 
 
 
