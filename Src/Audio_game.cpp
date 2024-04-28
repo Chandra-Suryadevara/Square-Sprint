@@ -45,7 +45,7 @@ void Audio_game::draw(sf::RenderWindow& window){
 }
 
 void Audio_game::change_audio(){
-    std::cout<<"hello i am here";
+    
     if (mute){
         Game_music.setVolume(50);
         mute = false;

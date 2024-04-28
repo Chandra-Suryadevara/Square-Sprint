@@ -39,8 +39,12 @@ for (int i=0;i<generaterandomnum(1,3);i++){
     }
 }
 
+void SpikesManager::restart(){
+    Obuj_spikes.clear();
 
-int SpikesManager::draw(sf::RenderWindow& window){
+}
+
+int SpikesManager::draw(sf::RenderWindow& window, bool& lock){
 
     if (Obuj_spikes.size()!=0){
      lastelementpostion = sf::Vector2i(Obuj_spikes.back().get_sprite().getPosition());
@@ -49,6 +53,11 @@ int SpikesManager::draw(sf::RenderWindow& window){
     createOBJS();
     }
     for( int i=0; i<Obuj_spikes.size();i++){
+        if (lock){
+            Obuj_spikes[i].stop_movement();
+        }else{
+            Obuj_spikes[i].resume_movement();
+        }
         std::string result = Obuj_spikes[i].draw(window);
         if (result == "done"){
             Obuj_spikes.erase(Obuj_spikes.begin()+i);

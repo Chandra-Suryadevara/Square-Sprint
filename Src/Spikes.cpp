@@ -1,10 +1,12 @@
 #include "../Headers/Spikes.hpp"
 #include "../Headers/Global.hpp"
+#include <iostream>
 
 
 
 Spikes::Spikes(){
     x = initial_location_spike;
+    movementlock=true;
 
 load_image();
 
@@ -21,15 +23,28 @@ void Spikes::load_image(){
 }
 
 void Spikes::movement(float speed){
+    if(movementlock == true){
     x  =  x - speed;
+    }
+}
+
+void Spikes::resume_movement(){
+    movementlock = true;
+}
+void Spikes::stop_movement(){
+    movementlock= false;
 }
 
 std::string Spikes::draw(sf::RenderWindow& window){
     sprite.setTexture(texture);
     sprite.setPosition(x, y); 
     sprite.setTextureRect(sf::IntRect(0, 0, 100, 100));
+    
+
     if (x>-100){
+        
         movement(0.5);
+        
     }else{
         return "done";
     }
