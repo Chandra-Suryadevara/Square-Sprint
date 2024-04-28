@@ -35,6 +35,7 @@ Square Sprint is a fast-paced 2D platformer game inspired by Geometry Dash. Jump
 
 ## How to Play:
 - Press the spacebar or Up button to jump.
+- Press M to mute or Unmute.
 - Avoid obstacles and traps by jumping over.
 - Reach the end of each level as quickly as possible to earn a high score.
 
