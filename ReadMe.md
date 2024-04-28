@@ -9,10 +9,13 @@ Square Sprint is a fast-paced 2D platformer game inspired by Geometry Dash. Jump
 
 ## Installation:
 1. Clone the repository to your local machine:
+   
       git clone https://github.com/your-username/square-sprint.git
-2. Navigate to the project directory:
+3. Navigate to the project directory:
+   
      cd Square Sprint
-3. Build Game (open Terminal)
+4. Build Game (open Terminal):
+   
      make all 
 
 
