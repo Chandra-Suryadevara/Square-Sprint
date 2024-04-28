@@ -29,6 +29,7 @@ void Graphics_designer::run() {
     while (window.isOpen()) {
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
+                Manager.restart();
                 window.close();
             if (event.type == sf::Event::KeyPressed) {
              if (event.key.code == sf::Keyboard::Space) {
@@ -106,6 +107,7 @@ void Graphics_designer::run() {
                 game_audio.unmute();
             
             }else if (chossen=="Exit"){
+                Manager.restart();
                 window.close();
             }
         }
