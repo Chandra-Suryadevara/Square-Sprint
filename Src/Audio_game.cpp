@@ -17,7 +17,7 @@ y = 100;
 
 void Audio_game::load_song(){
 
-if(!Game_music.openFromFile("/home/tanjiro/Github/Geometry-Dash/Resources/Audio/Music.wav")){
+if(!Game_music.openFromFile("Resources/Audio/Music.wav")){
     std::cout<<"cannot load song";
 
 }
