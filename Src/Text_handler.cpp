@@ -16,7 +16,7 @@ text.setFillColor(sf::Color::White);
 }
 
 void Text_handler::load_font(){
-    font.loadFromFile("/home/tanjiro/Github/Geometry-Dash/Resources/Font/font.otf");
+    font.loadFromFile("Resources/Font/font.otf");
     text.setFont(font);
 }
 
