@@ -7,8 +7,7 @@
 
 SpikesManager::SpikesManager(){
 
-score =0;
-speed =0.9;
+restart();
 }
 
 int SpikesManager::generaterandomnum(int limit1, int limit2){
@@ -49,7 +48,7 @@ void SpikesManager::restart(){
     Obuj_spikes.clear();
 
 score =0;
-speed =0.6;
+speed =0.9;
 
 }
 

@@ -22,8 +22,6 @@ score=0;
 jump_value=0.8;
 y=intial_y;
 x = Square_start;
-
-
     highscore = H.getHighScore();
     if(highscore==-1){
         highscore=0;
@@ -120,8 +118,8 @@ void Square_Main::draw(sf::RenderWindow& i_window,bool pressed)
     Highscore.set_string("High Score: ");
     Scorenum.set_string(std::to_string(score));
     Highscorenum.set_string(std::to_string(highscore));
-    Highscore.draw(i_window,1480,0);
-    Highscorenum.draw(i_window,1750,0);
+    Highscore.draw(i_window,1450,0);
+    Highscorenum.draw(i_window,1700,0);
     Scoretext.draw(i_window,10,0);
     Scorenum.draw(i_window,150,0);
     i_window.draw(sprite);
