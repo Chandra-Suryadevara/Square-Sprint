@@ -19,7 +19,7 @@ void Square_Main::reset(){
 
 dead = false;
 score=0;
-jump_value=0.7;
+jump_value=0.8;
 y=intial_y;
 x = Square_start;
 
@@ -45,7 +45,9 @@ void Square_Main::intial_movement(float temp_speed){
 void Square_Main::load_image(){
 if (dead){
         texture.loadFromFile("Resources/Images/end_face.png");
-    } else {
+    } else if (is_jumping){
+        texture.loadFromFile("Resources/Images/jumping.png");
+    } else{
         texture.loadFromFile("Resources/Images/main_face.png");
     }
 
@@ -56,17 +58,18 @@ void Square_Main::set_score(int scoremain){
 }
 
 void Square_Main::jump(float speed){
+
 if (reach == false){
 
-if (y > 300){
+if (y > 400){
     y = y-speed;
-}else if (y <= 300){
+}else if (y <= 400){
     reach = true;
 }
 } else{
     if (y!=intial_y){
         
-        y = y+speed;
+        y = y+speed*1.25;
         if (y > 755){
             y = 755;
         }
@@ -80,7 +83,6 @@ if (y > 300){
 void Square_Main::draw(sf::RenderWindow& i_window,bool pressed)
 {
 
-    sf::Sprite sprite;
     load_image();
     intial_movement(1);
     sprite.setPosition(x, y);
@@ -96,7 +98,11 @@ void Square_Main::draw(sf::RenderWindow& i_window,bool pressed)
 
     if (pressed == true && is_jumping == false){
         is_jumping =true;
+        load_image();
+        sprite.setTexture(texture);
+
     }
+    
     if (score !=0){
     if (score%10==0&& count ==0){
         jump_value = jump_value + 0.1;
@@ -108,6 +114,7 @@ void Square_Main::draw(sf::RenderWindow& i_window,bool pressed)
     if(is_jumping){
         jump(jump_value);
     }
+    
     Scoretext.set_string("Score: ");
 
     Highscore.set_string("High Score: ");
@@ -118,12 +125,12 @@ void Square_Main::draw(sf::RenderWindow& i_window,bool pressed)
     Scoretext.draw(i_window,10,0);
     Scorenum.draw(i_window,150,0);
     i_window.draw(sprite);
-    sprite_local = sprite;
+    
 }
 
 
 sf::Sprite& Square_Main::get_sprite(){
-    return sprite_local;
+    return sprite;
 }
 
 

@@ -12,7 +12,6 @@ all: dependencies compile doit run
 
 dependencies:
 	@echo "Installing dependencies..."
-	@sudo apt-get update
 	@sudo apt-get install g++
 	@sudo apt install -y libsfml-dev
 	@sudo apt-get install build-essential

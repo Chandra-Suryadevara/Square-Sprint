@@ -16,7 +16,7 @@ private:
     float jump_value;
     bool is_jumping =false;
     sf::Texture texture;
-    sf::Sprite sprite_local;
+    sf::Sprite sprite;
     HighScoreManager H;
     Text_handler Scoretext;
     Text_handler Scorenum;

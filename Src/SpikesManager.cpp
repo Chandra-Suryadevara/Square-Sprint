@@ -8,7 +8,7 @@
 SpikesManager::SpikesManager(){
 
 score =0;
-speed =0.5;
+speed =0.9;
 }
 
 int SpikesManager::generaterandomnum(int limit1, int limit2){
@@ -69,7 +69,7 @@ int SpikesManager::draw(sf::RenderWindow& window, bool& lock){
     if (Obuj_spikes.size()!=0){
      lastelementpostion = sf::Vector2i(Obuj_spikes.back().get_sprite().getPosition());
     }
-    if (Obuj_spikes.size()==0 || lastelementpostion.x<1100){
+    if (Obuj_spikes.size()==0 || lastelementpostion.x<900){
     createOBJS();
     }
     for( int i=0; i<Obuj_spikes.size();i++){
