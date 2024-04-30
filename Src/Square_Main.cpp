@@ -67,7 +67,7 @@ if (y > 400){
 } else{
     if (y!=intial_y){
         
-        y = y+speed*1.25;
+        y = y+speed*1.02;
         if (y > 755){
             y = 755;
         }
