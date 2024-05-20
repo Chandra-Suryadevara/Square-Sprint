@@ -11,6 +11,10 @@ reset();
 
 }
 
+int Square_Main::get_score(){
+    return score;
+}
+
 void Square_Main::set_dead(bool x){
     dead = x;
 }

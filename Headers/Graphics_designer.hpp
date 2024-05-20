@@ -8,6 +8,7 @@ public:
     ~Graphics_designer();
 
     void Create_BG();
+    void load_red_BG();
     void run();
     void DrawBG(const sf::Sprite& background_sprite);
     sf::Event* get_event();

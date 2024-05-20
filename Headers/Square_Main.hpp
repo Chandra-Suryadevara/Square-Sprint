@@ -28,6 +28,7 @@ public:
     Square_Main(); // Corrected constructor name
     void reset();
     bool is_dead();
+    int get_score();
     void load_image();
     void jump(float speed);
     void intial_movement(float temp_speed);

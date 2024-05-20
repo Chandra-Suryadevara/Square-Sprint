@@ -15,6 +15,11 @@ void Graphics_designer::Create_BG() {
     background_texture.loadFromFile("Resources/Images/BG.png");
 }
 
+void Graphics_designer::load_red_BG(){
+
+    background_texture.loadFromFile("Resources/Images/BG-red.jpg");
+}
+
 void Graphics_designer::run() {
     Create_BG();
     Audio_game game_audio;
@@ -80,7 +85,6 @@ void Graphics_designer::run() {
             main_char.set_dead(dead);
             }
         }
-        
         sf::Sprite background_sprite(background_texture);
         DrawBG(background_sprite);
         main_char.draw(window,jump);
@@ -112,6 +116,8 @@ void Graphics_designer::run() {
         }
 
         main_char.set_score(Manager.draw(window,menuopen));
+        
+
         window.display();
         jump = false;
         chossen="NULL";
