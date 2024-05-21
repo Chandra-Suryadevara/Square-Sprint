@@ -20,6 +20,15 @@ int SpikesManager::generaterandomnum(int limit1, int limit2){
     return randomNumber;
 }
 
+void SpikesManager::set_score(int score1){
+
+
+score=score1;
+
+
+
+}
+
 void SpikesManager::createOBJS(){
 for (int i=0;i<generaterandomnum(1,3);i++){
         if (i ==0){

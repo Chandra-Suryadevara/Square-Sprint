@@ -18,6 +18,7 @@ class SpikesManager{
         int draw(sf::RenderWindow& Window, bool& lock);
         int generaterandomnum(int limit1, int limit2);
         void createOBJS();
+        void set_score(int score1);
         void restart();
         std::vector<Spikes>& get_spikes(); 
         

@@ -33,6 +33,7 @@ void Graphics_designer::run() {
     std::string chossen;
     bool dead= false;
     bool touched=false;
+    int countforscore=0;
     std::vector<Text_handler> textobjs=Bar.get_objs();
     while (window.isOpen()) {
         while (window.pollEvent(event)) {
@@ -100,6 +101,19 @@ void Graphics_designer::run() {
        if ((main_char.get_score() %10 == 0 || Blocks.get_movestart())&& main_char.get_score()!=0){
          Blocks.draw(window,touched);
         }
+        if (touched){
+
+            if (countforscore == 0){
+        Manager.set_score(Manager.draw(window,menuopen)+10);
+        countforscore++;
+            }
+
+        }else{
+            countforscore=0;
+        }
+         main_char.set_score(Manager.draw(window,menuopen));
+           
+        
         if (menuopen||dead){
             menuopen=true;
             Bar.draw(window,event,dead);
@@ -125,11 +139,7 @@ void Graphics_designer::run() {
                 window.close();
             }
         }
-        if (touched){
-        main_char.set_score(Manager.draw(window,menuopen)+10);
-        }else{
-            main_char.set_score(Manager.draw(window,menuopen));
-        }
+        
         
 
         window.display();
