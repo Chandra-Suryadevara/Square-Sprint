@@ -5,6 +5,7 @@
 #include "../Headers/Audio_game.hpp"
 #include "../Headers/SpikesManager.hpp"
 #include "../Headers/Menu.hpp"
+#include "../Headers/Block.hpp"
 #include <iostream>
 
 Graphics_designer::Graphics_designer() : window(sf::VideoMode(SCREEN_WIDTH,SCREEN_HEIGHT), "Geometry Dash") {
@@ -23,6 +24,7 @@ void Graphics_designer::load_red_BG(){
 void Graphics_designer::run() {
     Create_BG();
     Audio_game game_audio;
+    Block Blocks;
     Square_Main main_char;
     SpikesManager Manager;
     Menu Bar;
@@ -30,6 +32,7 @@ void Graphics_designer::run() {
     bool jump = false;
     std::string chossen;
     bool dead= false;
+    bool touched=false;
     std::vector<Text_handler> textobjs=Bar.get_objs();
     while (window.isOpen()) {
         while (window.pollEvent(event)) {
@@ -84,11 +87,19 @@ void Graphics_designer::run() {
             dead = true;
             main_char.set_dead(dead);
             }
+            if (main_char.get_sprite().getGlobalBounds().intersects(Blocks.get_sprite().getGlobalBounds())){
+                touched=true;
+            }else{
+                touched=false;
+            }
         }
         sf::Sprite background_sprite(background_texture);
         DrawBG(background_sprite);
         main_char.draw(window,jump);
         game_audio.draw(window);
+       if ((main_char.get_score() %10 == 0 || Blocks.get_movestart())&& main_char.get_score()!=0){
+         Blocks.draw(window,touched);
+        }
         if (menuopen||dead){
             menuopen=true;
             Bar.draw(window,event,dead);
@@ -114,8 +125,11 @@ void Graphics_designer::run() {
                 window.close();
             }
         }
-
-        main_char.set_score(Manager.draw(window,menuopen));
+        if (touched){
+        main_char.set_score(Manager.draw(window,menuopen)+10);
+        }else{
+            main_char.set_score(Manager.draw(window,menuopen));
+        }
         
 
         window.display();
